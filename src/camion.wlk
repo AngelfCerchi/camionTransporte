@@ -3,13 +3,7 @@ object camion {
 	const carga = []
 	
 	
-	method cargar(cosa){ 
-		const rnd = new Range(start=1,end=10).anyOne()
-		if(rnd == 5){
-			cosa.reaccionar()
-		}
-		carga.add(cosa)
-	} 
+	method cargar(cosa){ carga.add(cosa) } 
 	method descargar(cosa) { carga.remove(cosa) }	
 	method todoPesoPar() = carga.all({c => c.peso().even()})
 	method hayAlgunoQuePesa(peso) = carga.any({ c => c.peso() == peso})

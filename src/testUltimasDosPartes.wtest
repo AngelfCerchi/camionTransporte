@@ -1,0 +1,39 @@
+import camion2.*
+import cosas2.*
+describe "Test total de bultos"{
+	
+	method initialize(){
+		camion2.cargar(bumblebee) /*2 bultos */
+		arenaAgranel.agregarArena(150) 
+		camion2.cargar(arenaAgranel) /* 1 bulto */
+		paqueteDeLadrillos.cantidadDeLadrillos(301) 
+		residuosRadioactivos.agregarResiduo(10kg)
+		contenedorPortuario.cargar(residuosRadioactivos) 
+		camion2.cargar(contenedorPortuario) /*2 bultos */
+		camion2.cargar(paqueteDeLadrillos) /*3 bultos */
+	}
+	test "Se carga bumblebee, 150kg arenaGranel, 301 Ladrillos , contenedorPortuario con residuosRadioactivos"{
+		assert.equals(8,camion2.totalBultos())
+	}
+}
+
+/* Se realizan algunos test para comprobar la reaccion de las cosas al cargarla */
+ 
+describe "Se reaccionan cosas2"{
+	test "carga reaccionando a bumblebee"{
+		camion2.cargar(bumblebee)
+		assert.that(bumblebee.transformacion())	
+	}
+	test "carga reaccionando a paqueteDeLadrillos, (cambia el peso)"{
+		camion2.cargar(paqueteDeLadrillos)
+		assert.equals(24,paqueteDeLadrillos.peso())
+	}
+	test "carga reaccionando a contenedorPortuario con paqueteDeLadrillos y bumblebee"{
+		contenedorPortuario.cargar(paqueteDeLadrillos)
+		contenedorPortuario.cargar(bumblebee)
+		camion2.cargar(contenedorPortuario)
+		assert.equals(24,paqueteDeLadrillos.peso())
+		assert.that(bumblebee.transformacion())
+	}
+	
+}
