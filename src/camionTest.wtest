@@ -1,0 +1,55 @@
+import camion.*
+import cosas.*
+
+describe "Test camion"{
+
+		method initialize(){
+			camion.cargar(bumblebee)
+			arenaAgranel.agregarArena(150)
+			camion.cargar(arenaAgranel)
+			camion.cargar(bateriaAntiAerea)
+			paqueteDeLadrillos.cantidadDeLadrillos(80)
+			embalajeDeSeguridad.agregarCosa(paqueteDeLadrillos)
+			camion.cargar(embalajeDeSeguridad)
+		}
+	
+	test "todos los pesos que contiene el camion es par, esperado = true"{
+		assert.that(camion.todoPesoPar())
+	}
+	test "hay alguna carga que pesa 800kg, esperado = true"{
+		assert.that(camion.hayAlgunoQuePesa(800))
+	}
+	test "que carga del camion es nivel 1 , esperado arenaAgranel"{
+		assert.equals(arenaAgranel,camion.elNivelEs(1))
+	}
+	test "peso total del camion, esperado = 2330"{
+		assert.equals(2330,camion.pesoTotal())
+	}
+	test "el camion esta excedido en peso, esperado = false"{
+		assert.notThat(camion.excedidoEnPeso())
+	}
+	test "objetos que superan peligrosidad 1, esperado = bumblebee y bateriaAntiAerea"{
+		assert.equals([bumblebee,bateriaAntiAerea],camion.objetosQueSuperanPeligrosidad(1))
+	}
+	test "objetos mas peligroso que bumblebee, esperado = bateriaAntiAerea"{
+		assert.equals([bateriaAntiAerea],camion.objetosMasPeligrososQue(bumblebee))
+	}
+	test "objetos mas peligroso que embalajeDeSeguridad, esperado = bumblebee, bateriaAntiAereea"{
+		assert.equals([bumblebee,bateriaAntiAerea],camion.objetosMasPeligrososQue(embalajeDeSeguridad))
+	}
+	test "la peligrosidad de la carga maxima es de 100, esperado= true,"{
+		assert.that(camion.puedeCircularEnRuta(100))
+	}
+	test "la peligrosidad de la carga maxima es de 30, esperado= False,"{
+		assert.notThat(camion.puedeCircularEnRuta(30))
+	}
+	test " el camion tiene algo que pesa entre 80 y 300, esperado = true"{
+		assert.that(camion.tieneAlgoQuePesaEntre(30,300))
+	}
+	test " el camion tiene algo que pesa entre 1 y 79, esperado = false"{
+		assert.notThat(camion.tieneAlgoQuePesaEntre(1,79))
+	}
+	test "Todos los pesos de la carga del camion"{
+		assert.equals([800,150,300,80],camion.pesos())
+	}
+}

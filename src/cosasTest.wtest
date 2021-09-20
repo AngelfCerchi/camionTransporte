@@ -1,0 +1,59 @@
+import cosas.*
+
+describe "Test paquete de ladrillos"{
+	
+	test "paquete de ladrillos con 1000 ladrillos nivel 2"{
+		paqueteDeLadrillos.cantidadDeLadrillos(500)
+		assert.equals(2,paqueteDeLadrillos.nivel())
+		assert.equals(1000,paqueteDeLadrillos.peso())
+		paqueteDeLadrillos.cantidadDeLadrillos(500)
+		assert.equals(2000,paqueteDeLadrillos.peso())
+	}
+	
+}
+
+describe "Test bateria Anti Aerea"{
+	
+	test " bateria anti aerea cargada (por defecto), peso = 300, nivel 100"{
+		assert.that(bateriaAntiAerea.estaCargado())
+		assert.equals(300,bateriaAntiAerea.peso())
+		assert.equals(100,bateriaAntiAerea.nivel())
+	}
+		test " bateria anti aerea no cargada , peso = 200, nivel 0"{
+		bateriaAntiAerea.cambiarEstadoCarga(false)
+		assert.notThat(bateriaAntiAerea.estaCargado())
+		assert.equals(200,bateriaAntiAerea.peso())
+		assert.equals(0,bateriaAntiAerea.nivel())
+	}
+	
+}
+
+describe "Test contenedor portuario"{
+	test "Contenedor con bumblebee transformado, arenaAgranel peso 300kg, knightRider peso 500, peso contenedor = 1700 y nivel 15"{
+		contenedorPortuario.cargar(bumblebee)
+		arenaAgranel.agregarArena(300)
+		contenedorPortuario.cargar(arenaAgranel)
+		contenedorPortuario.cargar(knightRider)
+		assert.equals(1700,contenedorPortuario.peso())
+		assert.equals(30,contenedorPortuario.nivel())
+	}
+}
+
+describe "Test embalaje de seguridad"{
+	
+	test "se embala 30 kg de residuosradioactivos, el peso es 15,nivel 100"{
+		residuosRadioactivos.agregarResiduo(30)
+		embalajeDeSeguridad.agregarCosa(residuosRadioactivos)
+		assert.equals(15,embalajeDeSeguridad.peso())
+		assert.equals(100,embalajeDeSeguridad.nivel())
+		
+	}
+	
+		test "se embala 45 kg de residuosradioactivos, el peso es 22.5,nivel 100"{
+		residuosRadioactivos.agregarResiduo(45)
+		embalajeDeSeguridad.agregarCosa(residuosRadioactivos)
+		assert.equals(22.5,embalajeDeSeguridad.peso())
+		assert.equals(100,embalajeDeSeguridad.nivel())
+		
+	}
+}
