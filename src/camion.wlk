@@ -4,6 +4,10 @@ object camion {
 	
 	
 	method cargar(cosa){ 
+		const rnd = new Range(start=1,end=10).anyOne()
+		if(rnd == 5){
+			cosa.reaccionar()
+		}
 		carga.add(cosa)
 	} 
 	method descargar(cosa) { carga.remove(cosa) }	

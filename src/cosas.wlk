@@ -30,7 +30,7 @@ object paqueteDeLadrillos{
 			return 3
 		}
 	}
-	method reaccionar(){ self.cantidadDeLadrillos(12) return console.println("No me agregen mas ladrillos :'(")}
+	method reaccionar(){ self.cantidadDeLadrillos(12) return console.println("No me agregen mas ladrillos :'(") }
 }
 
 object arenaAgranel{
