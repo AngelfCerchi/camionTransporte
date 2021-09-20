@@ -16,5 +16,4 @@ object camion {
 	method tieneAlgoQuePesaEntre(min,max) = carga.any({ c => c.peso().between(min,max)})
 	method cosaMasPesada() = carga.max({c => c.peso()})
 	method pesos() = carga.map({ c => c.peso()})
-	method totalBultos() = carga.sum({c => c.totalBultos()})
 }
